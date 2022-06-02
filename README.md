@@ -19,3 +19,5 @@ Sebastian Misztal
 * using threads for collision detection and movement of objects
 
 ## Documentation ##
+
+### Models ###
