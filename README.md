@@ -19,8 +19,8 @@ Sebastian Misztal
 * using threads for collision detection and movement of objects
 * Improving Engine - method to add specific type of SpaceShip
 
-## Simplified design model ##
-![picture alt](https://github.com/PatientWidar/SpaceConnectors/blob/main/Game_Model.png)
+## Simplified Design Model ##
+![Simplified Design Model](https://github.com/PatientWidar/SpaceConnectors/blob/main/Game_Model.png)
 
 ## Documentation ##
 
@@ -36,4 +36,4 @@ Adding method in Engine class to add SpaceShip is one of the way to improve that
 Every Gameobject use TextureManager to import graphic images.
 
 ## In-game view ##
-tu bedzie obrazek
+![In-Game View](https://github.com/PatientWidar/SpaceConnectors/blob/main/InGame_Model.png)
