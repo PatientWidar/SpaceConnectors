@@ -20,7 +20,7 @@ Sebastian Misztal
 * Improving Engine - method to add specific type of SpaceShip
 
 ## Simplified design model ##
-tu bedzie obrazek
+![picture alt](https://github.com/PatientWidar/SpaceConnectors/blob/main/Game_Model.png)
 
 ## Documentation ##
 
