@@ -58,9 +58,11 @@ void Engine::start(int width, int height)
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 }
 
+int zmienna = 0;
+
 void Engine::update()
 {
-    std::cout<<"Ship hp: "<<player->get_hp()<<std::endl;
+    //std::cout<<"Ship hp: "<<player->get_hp()<<std::endl;
     if(enemyTimer >= enemySpawnSpeed)
     {
         enemyTimer -= enemySpawnSpeed;
@@ -69,46 +71,55 @@ void Engine::update()
     enemyTimer++;
     player->move();
 
-    for(int i = bullets.size() - 1; i >= 0 ; i--)
+    if(zmienna >= 20)
     {
-        int temp_score = 0;
-        if(bullets.at(i).isEnemy() == false)
-            for(int j = spaceShips.size() - 1; j > 0; j--)
-            {
-                temp_score += bullets.at(i).deal_damage(spaceShips.at(j));
-                if(temp_score > 0)
+        for(int i = bullets.size() - 1; i >= 0 ; i--)
+        {
+            int temp_score = 0;
+            if(bullets.at(i).isEnemy() == false)
+                for(int j = spaceShips.size() - 1; j > 0; j--)
                 {
-                    score += temp_score;
-                    spaceShips.erase(spaceShips.begin() + j);
-                    bullets.erase(bullets.begin() + i);
+                    temp_score += bullets.at(i).deal_damage(spaceShips.at(j));
+                    if(temp_score > 0)
+                    {
+                        score += temp_score;
+                        spaceShips.erase(spaceShips.begin() + j);
+                        bullets.erase(bullets.begin() + i);
+                        break;
+                    }
+                }
+            else
+            {
+                std::cout<<"Ship hp: "<<player->get_hp()<<std::endl;
+                float temp_hp = player->get_hp();
+                bullets.at(i).deal_damage(*player);
+                if(player->get_hp() <= 0)
+                {
+                    isRunning = false;
                     break;
                 }
+                if(temp_hp != player->get_hp())
+                {
+                    bullets.erase(bullets.begin() + i);
+                    continue;
+                }
             }
-        else
-        {
-            std::cout<<"Ship hp: "<<player->get_hp()<<std::endl;
-            float temp_hp = player->get_hp();
-            bullets.at(i).deal_damage(*player);
-            if(player->get_hp() <= 0)
+            if(temp_score > 0)
             {
-                isRunning = false;
-                break;
-            }
-            if(temp_hp != player->get_hp())
-            {
-                bullets.erase(bullets.begin() + i);
                 continue;
             }
         }
-        if(temp_score > 0)
-        {
-            continue;
-        }
+        zmienna = 0;
+    }
+    for(int i = bullets.size() - 1; i >= 0 ; i--)
+    {
         if(bullets.at(i).move())
         {
             bullets.erase(bullets.begin() + i);
         }
     }
+        
+    zmienna++;
 
     for(int i = 0; i < spaceShips.size(); i++)
     {
