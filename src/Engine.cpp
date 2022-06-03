@@ -90,7 +90,7 @@ void Engine::update()
                 }
             else
             {
-                std::cout<<"Ship hp: "<<player->get_hp()<<std::endl;
+                //std::cout<<"Ship hp: "<<player->get_hp()<<std::endl;
                 float temp_hp = player->get_hp();
                 bullets.at(i).deal_damage(*player);
                 if(player->get_hp() <= 0)
